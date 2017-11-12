@@ -67,6 +67,15 @@ public class PaceCalc {
 		return resultDistance;
 	}
 
+	// method for speed calculation based on pace
+
+	protected double calcSpeed() {
+		double resultSpeed;
+		pace = this.getPace();
+		resultSpeed = (double) (3600) / (double) (pace);
+		return resultSpeed;
+	}
+
 	// method for Time calculation based on pace and distance
 
 	protected int calcTime() {
@@ -75,15 +84,6 @@ public class PaceCalc {
 		int distance = this.getDistance();
 		resultTime = (int) (pace * distance / 1000);
 		return resultTime;
-	}
-
-	// method for speed calculation based on pace
-
-	protected double calcSpeed() {
-		double resultSpeed;
-		pace = this.getPace();
-		resultSpeed = (double) (3600) / (double) (pace);
-		return resultSpeed;
 	}
 
 	// second constructor which sets all fields on create Object

@@ -115,35 +115,6 @@ public class PaceCalcTest {
 	}
 
 	@Test
-
-	// test for calcTime method
-	public void calcTimeTest() {
-
-		// small pace and big distance
-
-		mycalc.setPace(10);
-		mycalc.setDistance(42195);
-		time = mycalc.calcTime();
-		Assert.assertEquals(time, 421, "Test marathon distance, small pace. Wrong time! ");
-
-		// halfmarathon distance and 5min/km pace
-
-		mycalc.setPace(300);
-		mycalc.setDistance(21097);
-		time = mycalc.calcTime();
-		Assert.assertEquals(time, 6329, "Test halfmarathon distance and 5min/km pace Wrong time! ");
-
-		// small distance and big pace
-
-		mycalc.setPace(36000);
-		mycalc.setDistance(10);
-		time = mycalc.calcTime();
-		Assert.assertEquals(time, 360, "Small distance and big pace Wrong time! ");
-
-	}
-
-	@Test
-
 	// test for calcSpeed method
 
 	public void calcSpeedTest() {
@@ -171,6 +142,35 @@ public class PaceCalcTest {
 		mycalc.setPace(36000);
 		speed = mycalc.calcSpeed();
 		Assert.assertEquals(speed, 0.1, "big pace Wrong speed! ");
+	}
+
+	@Test
+
+	// test for calcTime method
+
+	public void calcTimeTest() {
+
+		// small pace and big distance
+
+		mycalc.setPace(10);
+		mycalc.setDistance(42195);
+		time = mycalc.calcTime();
+		Assert.assertEquals(time, 421, "Test marathon distance, small pace. Wrong time! ");
+
+		// halfmarathon distance and 5min/km pace
+
+		mycalc.setPace(300);
+		mycalc.setDistance(21097);
+		time = mycalc.calcTime();
+		Assert.assertEquals(time, 6329, "Test halfmarathon distance and 5min/km pace Wrong time! ");
+
+		// small distance and big pace
+
+		mycalc.setPace(36000);
+		mycalc.setDistance(10);
+		time = mycalc.calcTime();
+		Assert.assertEquals(time, 360, "Small distance and big pace Wrong time! ");
+
 	}
 
 	@Test
