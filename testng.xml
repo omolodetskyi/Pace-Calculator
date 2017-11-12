@@ -5,6 +5,7 @@
 		<classes>
 			<class name="pacecalc.PaceCalcTest" />
 			<class name="pacecalc.ParserTest" />
+			<class name="pacecalc.ConvertorTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
