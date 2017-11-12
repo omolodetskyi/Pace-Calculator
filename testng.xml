@@ -6,6 +6,7 @@
 			<class name="pacecalc.PaceCalcTest" />
 			<class name="pacecalc.ParserTest" />
 			<class name="pacecalc.ConvertorTest" />
+			<class name="pacecalc.EventsTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
