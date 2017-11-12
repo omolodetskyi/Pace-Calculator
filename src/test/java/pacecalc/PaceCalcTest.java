@@ -44,9 +44,9 @@ public class PaceCalcTest {
 
 	@Test
 
-	// test for paceCalc method
+	// test for calcPace method
 
-	public void paceCalcTest() {
+	public void calcPaceTest() {
 		int pace;
 
 		// simple usual distance and time
@@ -75,6 +75,70 @@ public class PaceCalcTest {
 		mycalc.setTime(1);
 		pace = mycalc.calcPace();
 		Assert.assertEquals(pace, 0, "Test halfmarathon by 1 hour Wrong pace! ");
+
+	}
+
+	@Test
+
+	// test for calcDistance method
+
+	public void calcDistanceTest() {
+
+		// simple usual pace and time
+
+		mycalc.setPace(360);
+		mycalc.setTime(3600);
+		distance = mycalc.calcDistance();
+		Assert.assertEquals(distance, 10000, "Test simple usual pace and time Wrong distance! ");
+
+		// small pace and big time
+
+		mycalc.setPace(10);
+		mycalc.setTime(3600);
+		distance = mycalc.calcDistance();
+		Assert.assertEquals(distance, 360000, "Test pace small, long time Wrong distance! ");
+
+		// halfmarathon pace and 1:30 hr time
+
+		mycalc.setPace(256);
+		mycalc.setTime(5401);
+		distance = mycalc.calcDistance();
+		Assert.assertEquals(distance, 21097, "Test halfmarathon pace by 1:30 hour Wrong distance! ");
+
+		// small time and big pace
+
+		mycalc.setPace(720);
+		mycalc.setTime(20);
+		distance = mycalc.calcDistance();
+		Assert.assertEquals(distance, 27, "Test small time and big pace Wrong pace! ");
+
+	}
+
+	@Test
+
+	// test for calcTime method
+	public void calcTimeTest() {
+
+		// small pace and big distance
+
+		mycalc.setPace(10);
+		mycalc.setDistance(42195);
+		time = mycalc.calcTime();
+		Assert.assertEquals(time, 421, "Test marathon distance, small pace. Wrong time! ");
+
+		// halfmarathon distance and 5min/km pace
+
+		mycalc.setPace(300);
+		mycalc.setDistance(21097);
+		time = mycalc.calcTime();
+		Assert.assertEquals(time, 6329, "Test halfmarathon distance and 5min/km pace Wrong time! ");
+
+		// small distance and big pace
+
+		mycalc.setPace(36000);
+		mycalc.setDistance(10);
+		time = mycalc.calcTime();
+		Assert.assertEquals(time, 360, "Small distance and big pace Wrong time! ");
 
 	}
 
