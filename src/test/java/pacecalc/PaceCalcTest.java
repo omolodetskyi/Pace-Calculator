@@ -9,7 +9,7 @@ public class PaceCalcTest {
 										// will be tested
 
 	@Test
-	public void test() {
+	public void gettersSettersTest() {
 
 		// test set and get for distance
 
@@ -34,6 +34,39 @@ public class PaceCalcTest {
 		mycalc.setSpeed(5.34);
 		double speed = mycalc.getSpeed();
 		Assert.assertEquals(speed, 5.34, "Wrong speed!");
+
+	}
+
+	@Test
+	public void paceCalcTest() {
+		int pace;
+
+		// simple usual distance and time
+
+		mycalc.setDistance(10000);
+		mycalc.setTime(3600);
+		pace = mycalc.calcPace();
+		Assert.assertEquals(pace, 360, "Test simple usual distance and time Wrong pace! ");
+
+		// small distance and big time
+
+		mycalc.setDistance(10);
+		mycalc.setTime(3600);
+		pace = mycalc.calcPace();
+		Assert.assertEquals(pace, 360000, "Test distance small, long time Wrong pace! ");
+
+		// halfmarathon distance and 1 hr time
+
+		mycalc.setDistance(21097);
+		mycalc.setTime(3600);
+		pace = mycalc.calcPace();
+		Assert.assertEquals(pace, 170, "Test halfmarathon by 1 hour Wrong pace! ");
+
+		// halfmarathon distance and very small time
+		mycalc.setDistance(21097);
+		mycalc.setTime(1);
+		pace = mycalc.calcPace();
+		Assert.assertEquals(pace, 0, "Test halfmarathon by 1 hour Wrong pace! ");
 
 	}
 }

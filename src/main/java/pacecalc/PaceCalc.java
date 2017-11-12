@@ -47,4 +47,22 @@ public class PaceCalc {
 	public PaceCalc() {
 	}
 
+	// method for Pace calculation based on distance and time
+
+	protected int calcPace() {
+		int distance = this.getDistance();
+		int time = this.getTime();
+		int resultPace;
+		resultPace = (int) (1000 * time / distance);
+		return resultPace;
+	}
+
+	// second constructor which sets all fields on create Object
+
+	public PaceCalc(int pace, int distance, int time, double speed) {
+		this.setDistance(distance);
+		this.setPace(pace);
+		this.setTime(time);
+		this.setSpeed(speed);
+	}
 }
