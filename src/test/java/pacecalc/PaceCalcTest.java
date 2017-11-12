@@ -144,6 +144,37 @@ public class PaceCalcTest {
 
 	@Test
 
+	// test for calcSpeed method
+
+	public void calcSpeedTest() {
+
+		// simple usual pace
+
+		mycalc.setPace(360);
+		speed = mycalc.calcSpeed();
+		Assert.assertEquals(speed, 10.0, "Test simple usual pace Wrong speed! ");
+
+		// small pace
+
+		mycalc.setPace(10);
+		speed = mycalc.calcSpeed();
+		Assert.assertEquals(speed, 360.0, "Test small pace Wrong speed! ");
+
+		// halfmarathon 5min/km pace
+
+		mycalc.setPace(300);
+		speed = mycalc.calcSpeed();
+		Assert.assertEquals(speed, 12.0, "Test  5min/km pace Wrong speed! ");
+
+		// big pace
+
+		mycalc.setPace(36000);
+		speed = mycalc.calcSpeed();
+		Assert.assertEquals(speed, 0.1, "big pace Wrong speed! ");
+	}
+
+	@Test
+
 	// test for second constructor of PaceCalc = PaceCalc(int pace, int
 	// distance, int time, double speed)
 
@@ -172,4 +203,5 @@ public class PaceCalcTest {
 		Assert.assertEquals(speed, 12.7, "Wrong speed! ");
 
 	}
+
 }
