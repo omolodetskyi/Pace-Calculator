@@ -78,4 +78,83 @@ public class Parser {
 		}
 		return strLeadingZero;
 	}
+
+	// method takes time in string and parse it to int
+	// in case if String returns not valid int or not valid for time value
+	// method returns -1
+
+	public int timeStringToInt(String timeString) {
+		String delims = ":";
+		int timeInt;
+		String[] time = timeString.split(delims);
+		if (time.length != 3) {
+			timeInt = -1;
+		} else {
+			try {
+
+				int hours = Integer.parseInt(time[0]);
+				int min = Integer.parseInt(time[1]);
+				int sec = Integer.parseInt(time[2]);
+				if (hours > 60 || min > 60 || sec > 60 || min < 0 || sec < 0 || hours < 0) {
+					timeInt = -1;
+				} else {
+					timeInt = hours * 3600 + min * 60 + sec;
+					if (timeInt == 0) {
+						timeInt = -1;
+					}
+				}
+			} catch (NumberFormatException e) {
+				timeInt = -1;
+			}
+		}
+		return timeInt;
+	}
+
+	// method takes pace in String and parse it to int
+	// in case if String returns not valid int or not valid for pace value
+	// method returns -1
+
+	public int paceStringToInt(String timeString) {
+		String delims = ":";
+		int timeInt;
+		String[] time = timeString.split(delims);
+		if (time.length != 2) {
+			timeInt = -1;
+		} else {
+			try {
+				int min = Integer.parseInt(time[0]);
+				int sec = Integer.parseInt(time[1]);
+				if (min > 60 || sec > 60 || min < 0 || sec < 0) {
+					timeInt = -1;
+				} else {
+					timeInt = min * 60 + sec;
+					if (timeInt == 0) {
+						timeInt = -1;
+					}
+				}
+			} catch (NumberFormatException e) {
+				timeInt = -1;
+			}
+		}
+
+		return timeInt;
+	}
+
+	// method takes pace in String and parse it to int
+	// in case if String returns not valid int or not valid for distance value
+	// method returns -1
+
+	public int distanceStringToInt(String distanceEnteredP) {
+		int distanceInt;
+		try {
+			distanceInt = Integer.parseInt(distanceEnteredP);
+			if (distanceInt < 0 || distanceInt == 0) {
+				distanceInt = -1;
+			}
+		} catch (NumberFormatException e) {
+			distanceInt = -1;
+		}
+		return distanceInt;
+	}
+
 }
