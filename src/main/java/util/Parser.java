@@ -50,12 +50,19 @@ public class Parser {
 	// 05:10)
 
 	public String parseFromPace(int pace) {
+		String returnPaceHrs;
 		String returnPaceMin;
 		String returnPaceSec;
 		String returnPace;
-		returnPaceMin = LeadingZero(pace / 60);
-		returnPaceSec = LeadingZero(pace % 360);
-		returnPace = returnPaceMin + ":" + returnPaceSec;
+		returnPaceHrs = LeadingZero(pace / 3600);
+		returnPaceMin = LeadingZero((pace % 3600) / 60);
+		returnPaceSec = LeadingZero((pace % 3600) % 60);
+		if (returnPaceHrs.compareTo("00") != 0) {
+			returnPace = returnPaceHrs + ":" + returnPaceMin + ":" + returnPaceSec;
+		} else {
+
+			returnPace = returnPaceMin + ":" + returnPaceSec;
+		}
 		return returnPace;
 	}
 

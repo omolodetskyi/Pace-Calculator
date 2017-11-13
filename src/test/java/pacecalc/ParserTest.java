@@ -75,7 +75,7 @@ public class ParserTest {
 		pace = 0;
 		parsePace = parser.parseFromPace(pace);
 		Assert.assertEquals(parsePace, "00:00", "Test for only seconds: Wrong parse pace! ");
-
+		
 	}
 
 	@Test
