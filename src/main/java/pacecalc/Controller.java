@@ -33,12 +33,33 @@ public class Controller {
 			cli.showEnterTimeMsg(); // request to enter time
 			timeStr = userInput.next(); // take time from user input
 			timeInt = parser.timeStringToInt(timeStr); // parse time to int
+			// in case of wrong user input parser returns -1
+			while (timeInt <= 0) { // in cycle until parser returns negative
+									// value or 0
+				cli.showErrorMsg(); // show error message
+				cli.showEnterTimeMsg(); // request to enter time
+				timeStr = userInput.next(); // take time from user input
+				timeInt = parser.timeStringToInt(timeStr); // parse time to int
+			}
+			// if user input was valid continue
 			pacecalc.setTime(timeInt); // set time in pacecalc object
 			cli.showEnterDistanceMsg(); // request to enter distance
 			distanceStr = userInput.next(); // take distance from user input
 			distanceInt = parser.distanceStringToInt(distanceStr); // parse
 																	// distance
 																	// to int
+			// in case of wrong user input parser returns -1
+			while (distanceInt < 0) { // in cycle until parser returns negative
+										// value or 0
+				cli.showErrorMsg(); // show error message
+				cli.showEnterDistanceMsg(); // request to enter distance
+				distanceStr = userInput.next(); // take distance from user input
+				distanceInt = parser.distanceStringToInt(distanceStr); // parse
+																		// distance
+																		// to
+																		// int
+			}
+			// if user input valid continue
 			pacecalc.setDistance(distanceInt); // set distance to pacecalc
 												// object
 			paceInt = pacecalc.calcPace(); // calculate pace
@@ -73,11 +94,30 @@ public class Controller {
 			distanceInt = parser.distanceStringToInt(distanceStr); // parse
 																	// distance
 																	// to int
+			// in case of wrong user input parser returns -1
+			while (distanceInt < 0) { // in cycle until parser returns negative
+										// value or 0
+				cli.showErrorMsg(); // show error message
+				cli.showEnterDistanceMsg(); // request to enter distance
+				distanceStr = userInput.next(); // take distance from user input
+				distanceInt = parser.distanceStringToInt(distanceStr); // parse
+																		// distance
+																		// to
+																		// int
+			}
 			pacecalc.setDistance(distanceInt); // set distance in pacecalc
 												// object
 			cli.showEnterPaceMsg(); // request to enter pace
 			paceStr = userInput.next(); // take pace from user input
 			paceInt = parser.paceStringToInt(paceStr); // parse pace to int
+			// in case of wrong user input parser returns -1
+			while (paceInt <= 0) { // in cycle until parser returns negative
+									// value or 0
+				cli.showErrorMsg(); // show error message
+				cli.showEnterTimeMsg(); // request to enter pace
+				paceStr = userInput.next(); // take pace from user input
+				paceInt = parser.paceStringToInt(paceStr); // parse pace to int
+			}
 			pacecalc.setPace(paceInt); // set pace in pacecalc object
 			timeInt = pacecalc.calcTime(); // calculate time
 			timeStr = parser.parseFromTime(timeInt); // parse time to string
@@ -109,9 +149,25 @@ public class Controller {
 			paceStr = userInput.next(); // take pace from user input
 			paceInt = parser.paceStringToInt(paceStr); // parse pace to int
 			pacecalc.setPace(paceInt); // set pace to pacecalc object
+			// in case of wrong user input parser returns -1
+			while (paceInt <= 0) { // in cycle until parser returns negative
+									// value or 0
+				cli.showErrorMsg(); // show error message
+				cli.showEnterTimeMsg(); // request to enter pace
+				paceStr = userInput.next(); // take pace from user input
+				paceInt = parser.paceStringToInt(paceStr); // parse pace to int
+			}
 			cli.showEnterTimeMsg(); // request to enter time
 			timeStr = userInput.next(); // take time from user input
 			timeInt = parser.timeStringToInt(timeStr); // parse time to int
+			while (timeInt <= 0) { // in cycle until parser returns negative
+				// value or 0
+				cli.showErrorMsg(); // show error message
+				cli.showEnterTimeMsg(); // request to enter time
+				timeStr = userInput.next(); // take time from user input
+				timeInt = parser.timeStringToInt(timeStr); // parse time to int
+			}
+			// if user input was valid continue
 			pacecalc.setTime(timeInt); // set time to pacecalc object
 			distanceInt = pacecalc.calcDistance(); // calculate distance
 			distanceStr = parser.parseFromDistance(distanceInt); // parse
