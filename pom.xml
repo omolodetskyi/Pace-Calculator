@@ -38,7 +38,9 @@
 						<id>copy-dependencies</id>
 						<phase>prepare-package</phase>
 						<goals>
-							<goal>copy-dependencies</goal>
+							<!--   <goal>copy-dependencies</goal> -->
+							<goal>process-sources</goal>
+							
 						</goals>
 						<configuration>
 							<outputDirectory>
