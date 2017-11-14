@@ -11,7 +11,10 @@ public class App {
 			}
 
 			else {
-				// not implemented yet
+				Controller controller = new Controller();
+				GUI gui = new GUI();
+				PaceCalc pacecalc = new PaceCalc();
+				controller.CalcFlow(pacecalc, gui);
 			}
 
 		} catch (ArrayIndexOutOfBoundsException e) {

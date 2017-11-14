@@ -262,4 +262,9 @@ public class Controller {
 		}
 		userInput.close();
 	}
+
+	public void CalcFlow(PaceCalc pacecalc, GUI gui) {
+		// TODO Auto-generated method stub
+
+	}
 }
