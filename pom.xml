@@ -38,9 +38,7 @@
 						<id>copy-dependencies</id>
 						<phase>prepare-package</phase>
 						<goals>
-							<!--   <goal>copy-dependencies</goal> -->
-							<goal>process-sources</goal>
-							
+							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
 							<outputDirectory>
@@ -53,7 +51,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.0.2</version> <!-- version info  should be there -->
+				<version>3.0.2</version>
 				<configuration>
 					<archive>
 						<manifest>
