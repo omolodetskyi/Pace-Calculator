@@ -1,11 +1,16 @@
 package pacecalc;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import util.Parser;
 
 public class Controller {
+	private PaceCalc pacecalc;
+	private CLUI cli;
+	private GUI gui;
 
 	public Controller() {
 		// just to test push to version2
@@ -253,18 +258,153 @@ public class Controller {
 										// again
 				break;
 			}
-		} catch (NumberFormatException e) {
-			cli.showErrorMsg();
-			CalcFlow(pacecalc, cli);
-		} catch (InputMismatchException e) {
-			cli.showErrorMsg();
-			CalcFlow(pacecalc, cli);
+		} // TODO what if both exception occurs? Could it be that application is
+			// started twice?
+		catch (NumberFormatException e) { // in case of numberformat exception
+			cli.showErrorMsg(); // show error message
+			CalcFlow(pacecalc, cli); // restart application
+		} catch (InputMismatchException e) { // in case of
+												// InputMismatchException
+			cli.showErrorMsg(); // show error message
+			CalcFlow(pacecalc, cli); // restart application
 		}
 		userInput.close();
 	}
 
-	public void CalcFlow(PaceCalc pacecalc, GUI gui) {
-		// TODO Auto-generated method stub
+	public void CalcFlow(PaceCalc pacecalc, GUI gui) { // same method as
+														// CalcFlow, but uses
+														// another parameters
+		this.gui = gui;
+		this.pacecalc = pacecalc;
+
+		this.gui.addCalcListener(new Calculate()); // add listener to Calc
+													// button
+		this.gui.addExitListener(new Exit()); // add listener to Exit button
+	}
+
+	// ActionListener for Calculate button, placed it here to support MVC
+	// pattern
+	class Calculate implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			int timeInt;
+			int distanceInt;
+			int paceInt;
+			String timeStr;
+			String distanceStr;
+			String paceStr;
+			Parser parser = new Parser();
+			try { // catch exceptions
+				switch (gui.getCalcSelection()) { // take a user selection for
+													// calculation
+				case 1: // pace calculation
+					timeStr = gui.getTime(); // take time from corresponded
+												// field
+					distanceStr = gui.getDistance(); // take distance from
+														// corresponded field
+					timeInt = parser.timeStringToInt(timeStr); // parse time
+					distanceInt = parser.distanceStringToInt(distanceStr); // parse
+																			// distance
+					if (timeInt < 0 || distanceInt < 0) { // if there is wrong
+															// value after
+															// parsing
+						gui.showErrorMessage(); // show error message
+						// TODO maybe make wrong values in fields red?
+					} else {// if values are OK
+						pacecalc.setDistance(distanceInt); // set distance in
+															// pacecalc object
+						pacecalc.setTime(timeInt); // set time in pacecalc
+													// object
+						paceInt = pacecalc.calcPace(); // calculate pace
+						paceStr = parser.parseFromPace(paceInt); // parse
+																	// calculated
+																	// pace to
+																	// Str
+						gui.setPace(paceStr); // show corresponded value in UI
+					}
+					break;
+				case 2: // time calculation
+					paceStr = gui.getPace(); // take pace from corresponded
+												// field
+					distanceStr = gui.getDistance(); // take distance from
+														// corresponded field
+					paceInt = parser.paceStringToInt(paceStr); // parse pace
+					distanceInt = parser.distanceStringToInt(distanceStr); // parse
+																			// distance
+					if (paceInt < 0 || distanceInt < 0) { // if there is wrong
+															// value after
+															// parsing
+						gui.showErrorMessage();// show error message
+						// TODO maybe make wrong values in fields red?
+					} else {// if values are OK
+						pacecalc.setDistance(distanceInt); // set distance in
+															// pacecalc object
+						pacecalc.setPace(paceInt); // set pace i pacecalc object
+						timeInt = pacecalc.calcTime(); // calculate time
+						timeStr = parser.parseFromTime(timeInt); // parse time
+																	// from int
+																	// to string
+						gui.setTime(timeStr); // show corresponded value in UI
+					}
+					break;
+				case 3: // distance calculation
+					paceStr = gui.getPace(); // take pace from corresponded
+												// field
+					timeStr = gui.getTime(); // take time from corresponded
+												// field
+					paceInt = parser.paceStringToInt(paceStr); // parse pace
+																// from string
+																// to int
+					timeInt = parser.timeStringToInt(timeStr); // parse time
+																// from string
+																// to int
+					if (paceInt < 0 || timeInt < 0) {// if there is wrong value
+														// after parsing
+						gui.showErrorMessage(); // show error message
+						// TODO maybe make wrong values in fields red?
+					} else { // if ok
+						pacecalc.setTime(timeInt); // set time to pacecalc
+													// object
+						pacecalc.setPace(paceInt); // set pace to pacecalc
+													// object
+						distanceInt = pacecalc.calcDistance(); // calculate
+																// distance
+						distanceStr = parser.parseFromDistance(distanceInt); // parse
+																				// distance
+																				// from
+																				// int
+																				// to
+																				// string
+						gui.setDistance(distanceStr); // show corresponded value
+														// in UI
+
+					}
+					break;
+				}
+			} catch (Exception error) { // in case of exception
+				gui.showErrorMessage(); // show error
+			}
+
+		}
 
 	}
+
+	// it's action listener for Exit button. Placed it in Controller and not in
+	// UI in order to support MVC pattern
+	class Exit implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			int userExit = gui.showExitMessage(); // invoke showExitMessage gui
+													// method, it returns 0 if
+													// user pressed Yes and 1 if
+													// he pressed No in Exit
+													// dialog
+			if (userExit == 0) { // if user pressed Yes (0)
+				System.exit(0); // exit application
+			}
+
+		}
+
+	}
+
 }
