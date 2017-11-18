@@ -75,7 +75,7 @@ public class ParserTest {
 		pace = 0;
 		parsePace = parser.parseFromPace(pace);
 		Assert.assertEquals(parsePace, "00:00", "Test for only seconds: Wrong parse pace! ");
-		
+
 	}
 
 	@Test
@@ -123,7 +123,7 @@ public class ParserTest {
 
 		double speed = 10.0;
 		parseSpeed = parser.parseFromSpeed(speed);
-		Assert.assertEquals(parseSpeed, "10.0", "Test for only km: Wrong parse speed! ");
+		Assert.assertEquals(parseSpeed, "10.00", "Test for only km: Wrong parse speed! ");
 
 		// km.m
 
@@ -141,7 +141,7 @@ public class ParserTest {
 
 		speed = 0.0;
 		parseSpeed = parser.parseFromSpeed(speed);
-		Assert.assertEquals(parseSpeed, "0.0", "Test for none speed: Wrong parse speed! ");
+		Assert.assertEquals(parseSpeed, "0.00", "Test for none speed: Wrong parse speed! ");
 
 	}
 }

@@ -12,8 +12,9 @@ public class CLUI {
 
 		String selectionMsg = "Please select what you would like to do:" + lineseparator
 				+ "* If you would like to calculate pace based on time and distance enter 1;" + lineseparator
-				+ "* If you would like to time based on pace and distance enter 2;" + lineseparator
-				+ "* If you would like to distance based on time and pace enter 3;" + lineseparator
+				+ "* If you would like to calculate time based on pace and distance enter 2;" + lineseparator
+				+ "* If you would like to calculate distance based on time and pace enter 3;" + lineseparator
+				+ "* If you would like to calculate speed based on pace enter 4;" + lineseparator
 				+ "* If you would like to exit enter 0;" + lineseparator + lineseparator + "Enter your choice here:";
 		System.out.println(selectionMsg);
 	}
@@ -49,6 +50,14 @@ public class CLUI {
 
 		String calculatePaceMsg = "You selected to calculate pace.";
 		System.out.println(calculatePaceMsg);
+	}
+
+	public void showCalculateSpeed() {
+
+		// this string is shown if user selected to calculate pace
+
+		String calculateSpeedMsg = "You selected to calculate speed.";
+		System.out.println(calculateSpeedMsg);
 	}
 
 	public void showCalculateDistanceMsg() {
@@ -121,6 +130,13 @@ public class CLUI {
 		// method shows calculated pace
 
 		System.out.println("Calculated! Based on your input pace should be " + pace);
+	}
+
+	public void showCalculatedSpeed(String speed) {
+
+		// method shows calculated pace
+
+		System.out.println("Calculated! Based on your input speed should be " + speed);
 	}
 
 	public void showCalculatedTime(String time) {
