@@ -146,6 +146,24 @@ public class CLUI {
 		System.out.println("Calculated! Based on your input time should be " + time);
 	}
 
+	public void showCalculatedPaceWrong() {
+
+		// method shows calculated time
+
+		System.out.println(
+				"Pace calculated! But it appears to be too big (bigger than 59:59) or too small (less than 00:00)."
+						+ lineseparator + "Please, check your input, re-enter and calculate again");
+	}
+
+	public void showCalculatedTimeWrong() {
+
+		// method shows calculated time
+
+		System.out.println(
+				"Time calculated! But it appears to be too big (bigger than 59:59:59) or too small (less than 00:00:00)."
+						+ lineseparator + "Please, check your input, re-enter and calculate again");
+	}
+
 	public void showCalculatedDistance(String distance) {
 
 		// method shows calculated distance

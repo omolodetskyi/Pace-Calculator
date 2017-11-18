@@ -69,9 +69,14 @@ public class Controller {
 				pacecalc.setDistance(distanceInt); // set distance to pacecalc
 													// object
 				paceInt = pacecalc.calcPace(); // calculate pace
+				if (paceInt > 3599 || paceInt == 0) {
+					cli.showCalculatedPaceWrong();
+					CalcFlow(pacecalc, cli);
+				}
 				paceStr = parser.parseFromPace(paceInt); // parse pace from int
 															// to
 															// string
+
 				cli.showCalculatedPace(paceStr); // show result of pace calc
 				cli.showContinueMsg(); // show continue message with yes no no
 				answer = userInput.next(); // take answer from user input
@@ -134,6 +139,10 @@ public class Controller {
 				}
 				pacecalc.setPace(paceInt); // set pace in pacecalc object
 				timeInt = pacecalc.calcTime(); // calculate time
+				if (timeInt > 3599 || timeInt == 0) {
+					cli.showCalculatedTimeWrong();
+					CalcFlow(pacecalc, cli);
+				}
 				timeStr = parser.parseFromTime(timeInt); // parse time to string
 				cli.showCalculatedTime(timeStr); // show result of time
 													// calculation
