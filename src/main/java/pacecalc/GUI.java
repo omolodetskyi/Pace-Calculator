@@ -31,8 +31,10 @@ public class GUI extends JFrame {
 	JRadioButton rbPace;
 	JRadioButton rbTime;
 	JRadioButton rbDistance;
+	JRadioButton rbSpeed;
 	JLabel lblTime;
 	JLabel lblPace;
+	JLabel lblSpeed;
 	JLabel lblDistance;
 	JOptionPane exitMessage;
 	JOptionPane errorMessage;
@@ -54,6 +56,7 @@ public class GUI extends JFrame {
 		lblPace = new JLabel("Enter pace in format mm:ss");
 		lblTime = new JLabel("Enter time in format hh:mm:ss");
 		lblDistance = new JLabel("Enter distance in meters(integer value)");
+		lblSpeed = new JLabel("Speed calculation:");
 
 		txtTime = new JTextField(20);
 		txtPace = new JTextField(20);
@@ -69,16 +72,21 @@ public class GUI extends JFrame {
 		rbDistance = new JRadioButton("Calculate distance based on pace and time");
 		rbDistance.setActionCommand("distance");
 
+		rbSpeed = new JRadioButton("Calculate speed based on pace");
+		rbSpeed.setActionCommand("speed");
+
 		ListenerForRadioButton lForRadioButton = new ListenerForRadioButton();
 
 		rbPace.addActionListener(lForRadioButton);
 		rbTime.addActionListener(lForRadioButton);
 		rbDistance.addActionListener(lForRadioButton);
+		rbSpeed.addActionListener(lForRadioButton);
 
 		bgSelect = new ButtonGroup();
 		bgSelect.add(rbPace);
 		bgSelect.add(rbTime);
 		bgSelect.add(rbDistance);
+		bgSelect.add(rbSpeed);
 		rbPace.setSelected(true);
 
 		Box enterBox = Box.createVerticalBox();
@@ -88,10 +96,12 @@ public class GUI extends JFrame {
 		enterBox.add(txtDistance);
 		enterBox.add(lblPace);
 		enterBox.add(txtPace);
+		enterBox.add(lblSpeed);
 		Box choiceBox = Box.createVerticalBox();
 		choiceBox.add(rbPace);
 		choiceBox.add(rbTime);
 		choiceBox.add(rbDistance);
+		choiceBox.add(rbSpeed);
 		choiceBox.setBorder(BorderFactory.createEtchedBorder());
 		Box buttonBox = Box.createHorizontalBox();
 		buttonBox.add(Box.createHorizontalGlue());
@@ -143,6 +153,10 @@ public class GUI extends JFrame {
 		return txtTime.getText();
 	}
 
+	void setSpeed(String speed) {
+		lblSpeed.setText("Speed calculation(km/h): " + speed);
+	}
+
 	String getPace() {
 
 		return txtPace.getText();
@@ -165,15 +179,20 @@ public class GUI extends JFrame {
 	}
 
 	int getCalcSelection() {
-		int userCalcSelecton = 1;
+		int userCalcSelection = 1;
 		if (rbPace.isSelected()) {
-			userCalcSelecton = 1;
+
+			userCalcSelection = 1;
 		} else if (rbTime.isSelected()) {
-			userCalcSelecton = 2;
+
+			userCalcSelection = 2;
 		} else if (rbDistance.isSelected()) {
-			userCalcSelecton = 3;
+
+			userCalcSelection = 3;
+		} else if (rbSpeed.isSelected()) {
+			userCalcSelection = 4;
 		}
-		return userCalcSelecton;
+		return userCalcSelection;
 	}
 
 	class ListenerForRadioButton implements ActionListener {
@@ -181,20 +200,26 @@ public class GUI extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			if (e.getSource() == rbPace) {
+				setSpeed("");
 				txtPace.setEnabled(false);
 				txtTime.setEnabled(true);
 				txtDistance.setEnabled(true);
 			} else if (e.getSource() == rbTime) {
+				setSpeed("");
 				txtPace.setEnabled(true);
 				txtTime.setEnabled(false);
 				txtDistance.setEnabled(true);
 			} else if (e.getSource() == rbDistance) {
+				setSpeed("");
 				txtPace.setEnabled(true);
 				txtTime.setEnabled(true);
 				txtDistance.setEnabled(false);
+			} else if (e.getSource() == rbSpeed) {
+				txtPace.setEnabled(true);
+				txtTime.setEnabled(false);
+				txtDistance.setEnabled(false);
 			}
 		}
-
 	}
 
 	private void componentAdd(JPanel thePanel, JComponent comp, int xPos, int yPos, int compWidth, int compHeight,

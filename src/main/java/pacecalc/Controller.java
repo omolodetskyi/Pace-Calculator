@@ -344,9 +344,11 @@ public class Controller {
 			int timeInt;
 			int distanceInt;
 			int paceInt;
+			double speedDouble;
 			String timeStr;
 			String distanceStr;
 			String paceStr;
+			String speedStr;
 			Parser parser = new Parser();
 			try { // catch exceptions
 				switch (gui.getCalcSelection()) { // take a user selection for
@@ -434,6 +436,23 @@ public class Controller {
 
 					}
 					break;
+				case 4: // speed calculation
+					paceStr = gui.getPace(); // take pace from corresponded
+					// field
+					paceInt = parser.paceStringToInt(paceStr); // parse pace
+					// from string
+					// to int
+					if (paceInt < 0) {// if there is wrong value
+						// after parsing
+						gui.showErrorMessage(); // show error message
+						// TODO maybe make wrong values in fields red?
+					} else { // if ok
+						pacecalc.setPace(paceInt); // set pace to pacecalc
+						// object
+						speedDouble = pacecalc.calcSpeed();
+						speedStr = parser.parseFromSpeed(speedDouble);
+						gui.setSpeed(speedStr);
+					}
 				}
 			} catch (Exception error) { // in case of exception
 				gui.showErrorMessage(); // show error
