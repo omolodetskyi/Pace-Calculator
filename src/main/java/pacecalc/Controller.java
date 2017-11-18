@@ -139,7 +139,7 @@ public class Controller {
 				}
 				pacecalc.setPace(paceInt); // set pace in pacecalc object
 				timeInt = pacecalc.calcTime(); // calculate time
-				if (timeInt > 3599 || timeInt == 0) {
+				if (timeInt > 215999 || timeInt == 0) {
 					cli.showCalculatedTimeWrong();
 					CalcFlow(pacecalc, cli);
 				}
