@@ -132,7 +132,7 @@ public class Controller {
 				while (paceInt <= 0) { // in cycle until parser returns negative
 										// value or 0
 					cli.showErrorMsg(); // show error message
-					cli.showEnterTimeMsg(); // request to enter pace
+					cli.showEnterPaceMsg(); // request to enter pace
 					paceStr = userInput.next(); // take pace from user input
 					paceInt = parser.paceStringToInt(paceStr); // parse pace to
 																// int
