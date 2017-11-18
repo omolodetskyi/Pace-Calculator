@@ -297,9 +297,9 @@ public class Controller {
 
 				// if answer is yes or no we go here to if-else
 
-				if (answer.equals("yes")) { // if answer is yes
+				if (answer.equals("no")) { // if answer is yes
 					CalcFlow(pacecalc, cli); // start application again
-				} else if (answer.equals("no")) { // if answer is no
+				} else if (answer.equals("yes")) { // if answer is no
 					cli.showExitMsg(); // show exit message
 					System.exit(0); // close application
 				}
