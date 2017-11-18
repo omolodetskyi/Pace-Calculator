@@ -1,5 +1,7 @@
 package util;
 
+import java.text.DecimalFormat;
+
 public class Parser {
 
 	// parseFrom methods convert fields' values in usual format in Strings
@@ -70,7 +72,9 @@ public class Parser {
 	// (like 05:10)
 
 	public String parseFromSpeed(double speed) {
-		String returnSpeed = Double.toString(speed);
+		String pattern = "##0.00";
+		DecimalFormat decimalFormat = new DecimalFormat(pattern);
+		String returnSpeed = decimalFormat.format(speed);
 		return returnSpeed;
 	}
 

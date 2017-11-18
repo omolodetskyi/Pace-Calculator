@@ -136,7 +136,7 @@ public class CLUI {
 
 		// method shows calculated pace
 
-		System.out.println("Calculated! Based on your input pace should be " + speed);
+		System.out.println("Calculated! Based on your input speed should be " + speed);
 	}
 
 	public void showCalculatedTime(String time) {
