@@ -142,7 +142,7 @@ public class Controller {
 				while (paceInt <= 0) { // in cycle until parser returns negative
 										// value or 0
 					cli.showErrorMsg(); // show error message
-					cli.showEnterTimeMsg(); // request to enter pace
+					cli.showEnterPaceMsg(); // request to enter pace
 					paceStr = userInput.next(); // take pace from user input
 					paceInt = parser.paceStringToInt(paceStr); // parse pace to
 																// int
@@ -210,10 +210,15 @@ public class Controller {
 				// if user input was valid continue
 				pacecalc.setTime(timeInt); // set time to pacecalc object
 				distanceInt = pacecalc.calcDistance(); // calculate distance
+
 				distanceStr = parser.parseFromDistance(distanceInt); // parse
 																		// distance
 																		// to
 																		// string
+				if (distanceStr.equals("0.0")) {
+					cli.showCalculatedDistanceWrong();
+					CalcFlow(pacecalc, cli);
+				}
 				cli.showCalculatedDistance(distanceStr); // show result of
 															// distance
 															// calculation
@@ -307,9 +312,9 @@ public class Controller {
 
 				// if answer is yes or no we go here to if-else
 
-				if (answer.equals("yes")) { // if answer is yes
+				if (answer.equals("no")) { // if answer is yes
 					CalcFlow(pacecalc, cli); // start application again
-				} else if (answer.equals("no")) { // if answer is no
+				} else if (answer.equals("yes")) { // if answer is no
 					cli.showExitMsg(); // show exit message
 					System.exit(0); // close application
 				}

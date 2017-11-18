@@ -171,4 +171,10 @@ public class CLUI {
 		System.out.println("Calculated! Based on your input distance should be " + distance + " km");
 	}
 
+	public void showCalculatedDistanceWrong() {
+		System.out.println("Distance calculated! But it appears to be  too small (less than 0.0 km)." + lineseparator
+				+ "Please, check your input, re-enter and calculate again");
+
+	}
+
 }
