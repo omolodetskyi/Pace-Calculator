@@ -65,6 +65,7 @@ public class Parser {
 
 			returnPace = returnPaceMin + ":" + returnPaceSec;
 		}
+
 		return returnPace;
 	}
 
