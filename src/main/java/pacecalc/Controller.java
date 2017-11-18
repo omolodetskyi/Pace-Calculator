@@ -200,10 +200,15 @@ public class Controller {
 				// if user input was valid continue
 				pacecalc.setTime(timeInt); // set time to pacecalc object
 				distanceInt = pacecalc.calcDistance(); // calculate distance
+
 				distanceStr = parser.parseFromDistance(distanceInt); // parse
 																		// distance
 																		// to
 																		// string
+				if (distanceStr.equals("0.0")) {
+					cli.showCalculatedDistanceWrong();
+					CalcFlow(pacecalc, cli);
+				}
 				cli.showCalculatedDistance(distanceStr); // show result of
 															// distance
 															// calculation
