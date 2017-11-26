@@ -122,28 +122,41 @@ public class ConvertorTest {
 		return params;
 	}
 
-	@Test
+	@Test(dataProvider = "setPrametersForConvertSpeedMphToKmH")
 
 	// test method which convert m/h to km/h
 
-	public void convertSpeedMphToKmH() {
-
-		// usual speed
-		speedMpH = "6.214";
+	public void convertSpeedMphToKmH(String speedMpH, double speedKmHexpected, String message) {
 
 		speedKmH = convertor.convertSpeedMpHtoKmh(speedMpH);
-		Assert.assertEquals(speedKmH, 10.0, "Test converting usual speed mph to kmh");
+		Assert.assertEquals(speedKmH, speedKmHexpected, message);
+
+	}
+
+	@DataProvider(name = "setPrametersForConvertSpeedMphToKmH")
+	private Object[][] setPrametersForConvertSpeedMphToKmH() {
+		Object[][] params = new Object[3][3];
+
+		// usual speed
+
+		params[0][0] = "6.214";
+		params[0][1] = 10.0;
+		params[0][2] = "Test converting small speed mph to kmh";
 
 		// small speed
 
-		speedMpH = "0.007";
-		speedKmH = convertor.convertSpeedMpHtoKmh(speedMpH);
-		Assert.assertEquals(speedKmH, 0.02, "Test converting small speed mph to kmh");
+		params[1][0] = "0.007";
+		params[1][1] = 0.02;
+		params[1][2] = "Test converting small speed mph to kmh";
 
 		// big speed
+		// TODO should think about precise, in this particular case I've lost
+		// 1674 m - almost 1 mile
 
-		speedMpH = "6214.0";
-		speedKmH = convertor.convertSpeedMpHtoKmh(speedMpH);
-		Assert.assertEquals(speedKmH, 9998.33, "Test converting big speed mph to kmh");
+		params[2][0] = "6214.0";
+		params[2][1] = 9998.33;
+		params[2][2] = "Test converting big speed mph to kmh";
+
+		return params;
 	}
 }
