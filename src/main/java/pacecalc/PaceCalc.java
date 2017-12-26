@@ -1,5 +1,7 @@
 package pacecalc;
 
+import util.Constants;
+
 public class PaceCalc {
 
 	private int time; // time in seconds
@@ -53,7 +55,7 @@ public class PaceCalc {
 		int distance = this.getDistance();
 		int time = this.getTime();
 		int resultPace;
-		resultPace = (int) (1000 * time / distance);
+		resultPace = (int) (Constants.ONEKM_INMETERS * time / distance);
 		return resultPace;
 	}
 
@@ -63,7 +65,7 @@ public class PaceCalc {
 		int pace = this.getPace();
 		int time = this.getTime();
 		int resultDistance;
-		resultDistance = (int) (1000 * time / pace);
+		resultDistance = (int) (Constants.ONEKM_INMETERS * time / pace);
 		return resultDistance;
 	}
 
@@ -72,7 +74,7 @@ public class PaceCalc {
 	protected double calcSpeed() {
 		double resultSpeed;
 		pace = this.getPace();
-		resultSpeed = (double) (3600) / (double) (pace);
+		resultSpeed = (double) (Constants.ONEHOUR_INSEC) / (double) (pace);
 		return resultSpeed;
 	}
 
@@ -82,7 +84,7 @@ public class PaceCalc {
 		int resultTime;
 		int pace = this.getPace();
 		int distance = this.getDistance();
-		resultTime = (int) (pace * distance / 1000);
+		resultTime = (int) (pace * distance / Constants.ONEKM_INMETERS);
 		return resultTime;
 	}
 

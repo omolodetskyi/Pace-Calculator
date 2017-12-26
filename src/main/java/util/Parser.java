@@ -16,9 +16,9 @@ public class Parser {
 		String timeSec;
 
 		String returnTime;
-		timeHours = LeadingZero(time / 3600);
-		timeMin = LeadingZero((time % 3600) / 60);
-		timeSec = LeadingZero((time % 3600) % 60);
+		timeHours = LeadingZero(time / Constants.ONEHOUR_INSEC);
+		timeMin = LeadingZero((time % Constants.ONEHOUR_INSEC) / Constants.ONEHOUR_INMIN);
+		timeSec = LeadingZero((time % Constants.ONEHOUR_INSEC) % Constants.ONEMIN_INSEC);
 		returnTime = timeHours + ":" + timeMin + ":" + timeSec;
 
 		return returnTime;
@@ -33,8 +33,8 @@ public class Parser {
 		int returnDistanceM;
 		String leadingZero;
 		String returnDistance;
-		returnDistanceKm = distance / 1000;
-		returnDistanceM = distance % 1000;
+		returnDistanceKm = distance / Constants.ONEKM_INMETERS;
+		returnDistanceM = distance % Constants.ONEKM_INMETERS;
 		if (returnDistanceM > 99) {
 			leadingZero = "";
 		} else if (returnDistanceM > 9) {
@@ -56,9 +56,9 @@ public class Parser {
 		String returnPaceMin;
 		String returnPaceSec;
 		String returnPace;
-		returnPaceHrs = LeadingZero(pace / 3600);
-		returnPaceMin = LeadingZero((pace % 3600) / 60);
-		returnPaceSec = LeadingZero((pace % 3600) % 60);
+		returnPaceHrs = LeadingZero(pace / Constants.ONEHOUR_INSEC);
+		returnPaceMin = LeadingZero((pace % Constants.ONEHOUR_INSEC) / Constants.ONEHOUR_INMIN);
+		returnPaceSec = LeadingZero((pace % Constants.ONEHOUR_INSEC) % Constants.ONEMIN_INSEC);
 		if (returnPaceHrs.compareTo("00") != 0) {
 			returnPace = returnPaceHrs + ":" + returnPaceMin + ":" + returnPaceSec;
 		} else {
@@ -110,7 +110,7 @@ public class Parser {
 				if (hours > 60 || min > 60 || sec > 60 || min < 0 || sec < 0 || hours < 0) {
 					timeInt = -1;
 				} else {
-					timeInt = hours * 3600 + min * 60 + sec;
+					timeInt = hours * Constants.ONEHOUR_INSEC + min * Constants.ONEMIN_INSEC + sec;
 					if (timeInt == 0) {
 						timeInt = -1;
 					}
@@ -139,7 +139,7 @@ public class Parser {
 				if (min > 60 || sec > 60 || min < 0 || sec < 0) {
 					timeInt = -1;
 				} else {
-					timeInt = min * 60 + sec;
+					timeInt = min * Constants.ONEMIN_INSEC + sec;
 					if (timeInt == 0) {
 						timeInt = -1;
 					}

@@ -9,9 +9,9 @@ public class Events {
 	public int returnDistance(String eventName) {
 		try {
 			HashMap<String, Integer> eventArray = new HashMap<String, Integer>();
-			eventArray.put("Marathon", 42195);
-			eventArray.put("Halfmarathon", 21097);
-			eventArray.put("10k", 10000);
+			eventArray.put("Marathon", Constants.MARATHON_DISTANCE_INMETERS);
+			eventArray.put("Halfmarathon", Constants.HALFMARATHON_DISTANCE_INMETERS);
+			eventArray.put("10k", Constants.TENKM_DISTANCE_INMETERS);
 			return eventArray.get(eventName);
 
 		} catch (NullPointerException e) {

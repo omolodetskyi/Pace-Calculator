@@ -1,10 +1,11 @@
 package util;
 
 public class Convertor {
+
 	public String convertKmToMile(int distanceKm) {
 		String distanceMile;
 		double distanceMileDouble;
-		distanceMileDouble = Math.floor(((double) (distanceKm) / 1000) * 621.4) / 1000.0;
+		distanceMileDouble = Math.floor(((double) (distanceKm) / Constants.ONEKM_INMETERS) * 621.4) / 1000.0;
 		distanceMile = Double.toString(distanceMileDouble);
 		return distanceMile;
 	}
@@ -13,7 +14,7 @@ public class Convertor {
 
 	public int convertMileToKm(String distanceMile) {
 		int distanceKm;
-		distanceKm = (int) Math.ceil(Double.parseDouble(distanceMile) * 1609.0);
+		distanceKm = (int) Math.ceil(Double.parseDouble(distanceMile) * Constants.ONEMILE_INKM);
 		return distanceKm;
 	}
 
