@@ -1,32 +1,20 @@
-package pacecalc;
+package pacecalc.ulils;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import util.Convertor;
+import pacecalc.util.Converter;
 
-public class ConvertorTest {
+public class ConverterTest {
 
-	Convertor convertor = new Convertor();
-	int distanceKm;
-	String distanceMile;
-	double speedKmH;
-	String speedMpH;
-
-	@Test(dataProvider = "setPrametersForConvertKmtoMileTest")
-
-	// test method which convert km to mile
-
+	@Test(dataProvider = "setParametersForConvertKmToMileTest")
 	public void convertKMtoMileTest(int distanceKm, String distanceMileExpected, String message) {
-
-		distanceMile = convertor.convertKmToMile(distanceKm);
-		Assert.assertEquals(distanceMile, distanceMileExpected, message);
-
+		Assert.assertEquals(Converter.convertKmToMile(distanceKm), distanceMileExpected, message);
 	}
 
-	@DataProvider(name = "setPrametersForConvertKmtoMileTest")
-	private Object[][] setPrametersForConvertKmtoMileTest() {
+	@DataProvider(name = "setParametersForConvertKmToMileTest")
+	private Object[][] setParametersForConvertKmToMileTest() {
 		Object[][] params = new Object[3][3];
 
 		// usual distance
@@ -50,19 +38,13 @@ public class ConvertorTest {
 		return params;
 	}
 
-	@Test(dataProvider = "setPrametersForConvertMileToKmTest")
-
-	// test method which convert mile to km
-
+	@Test(dataProvider = "setParametersForConvertMileToKmTest")
 	public void convertMileToKmTest(int distanceKmExpected, String distanceMile, String message) {
-
-		distanceKm = convertor.convertMileToKm(distanceMile);
-		Assert.assertEquals(distanceKm, distanceKmExpected, message);
-
+		Assert.assertEquals(Converter.convertMileToKm(distanceMile), distanceKmExpected, message);
 	}
 
-	@DataProvider(name = "setPrametersForConvertMileToKmTest")
-	private Object[][] setPrametersForConvertMileToKmTest() {
+	@DataProvider(name = "setParametersForConvertMileToKmTest")
+	private Object[][] setParametersForConvertMileToKmTest() {
 		Object[][] params = new Object[3][3];
 
 		// usual distance
@@ -86,17 +68,13 @@ public class ConvertorTest {
 		return params;
 	}
 
-	@Test(dataProvider = "setPrametersForConvertSpeedKmToMileTest")
-
-	// test method which convert km/h to mile/h
-
+	@Test(dataProvider = "setParametersForConvertSpeedKmToMileTest")
 	public void convertSpeedKmToMileTest(double speedKmH, String speedMpHExpected, String message) {
-		speedMpH = convertor.convertSpeedKmhToMpH(speedKmH);
-		Assert.assertEquals(speedMpH, speedMpHExpected, message);
+		Assert.assertEquals(Converter.convertSpeedKmhToMpH(speedKmH), speedMpHExpected, message);
 	}
 
-	@DataProvider(name = "setPrametersForConvertSpeedKmToMileTest")
-	private Object[][] setPrametersForConvertSpeedKmToMileTest() {
+	@DataProvider(name = "setParametersForConvertSpeedKmToMileTest")
+	private Object[][] setParametersForConvertSpeedKmToMileTest() {
 		Object[][] params = new Object[3][3];
 
 		// usual speed
@@ -123,27 +101,9 @@ public class ConvertorTest {
 	}
 
 	@Test
-
-	// test method which convert m/h to km/h
-
 	public void convertSpeedMphToKmH() {
-
-		// usual speed
-		speedMpH = "6.214";
-
-		speedKmH = convertor.convertSpeedMpHtoKmh(speedMpH);
-		Assert.assertEquals(speedKmH, 10.0, "Test converting usual speed mph to kmh");
-
-		// small speed
-
-		speedMpH = "0.007";
-		speedKmH = convertor.convertSpeedMpHtoKmh(speedMpH);
-		Assert.assertEquals(speedKmH, 0.02, "Test converting small speed mph to kmh");
-
-		// big speed
-
-		speedMpH = "6214.0";
-		speedKmH = convertor.convertSpeedMpHtoKmh(speedMpH);
-		Assert.assertEquals(speedKmH, 9998.33, "Test converting big speed mph to kmh");
+		Assert.assertEquals(Converter.convertSpeedMpHtoKmh("6.214"), 10.0, "Test converting usual speed mph to kmh");
+		Assert.assertEquals(Converter.convertSpeedMpHtoKmh("0.007"), 0.02, "Test converting small speed mph to kmh");
+		Assert.assertEquals(Converter.convertSpeedMpHtoKmh("6214.0"), 9998.33, "Test converting big speed mph to kmh");
 	}
 }
