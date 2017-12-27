@@ -1,15 +1,10 @@
-package util;
+package pacecalc.util;
 
 import java.text.DecimalFormat;
 
 public class Parser {
 
-	// parseFrom methods convert fields' values in usual format in Strings
-
-	// convert time in int (like 3600) to time in String in format hh:mm:ss
-	// (like 01:00:00)
-
-	public String parseFromTime(int time) {
+	public static String parseFromTime(int time) {
 
 		String timeHours;
 		String timeMin;
@@ -24,10 +19,7 @@ public class Parser {
 		return returnTime;
 	}
 
-	// convert Distance in int(like 10000) to distance in String in km (like
-	// 10.000)
-
-	public String parseFromDistance(int distance) {
+	public static String parseFromDistance(int distance) {
 
 		int returnDistanceKm;
 		int returnDistanceM;
@@ -48,10 +40,7 @@ public class Parser {
 		return returnDistance;
 	}
 
-	// convert pace in int (like 360) to pace in String in format mm:ss (like
-	// 05:10)
-
-	public String parseFromPace(int pace) {
+	public static String parseFromPace(int pace) {
 		String returnPaceHrs;
 		String returnPaceMin;
 		String returnPaceSec;
@@ -69,19 +58,13 @@ public class Parser {
 		return returnPace;
 	}
 
-	// convert speed in double (like 5.34) to speed in String in format mm:ss
-	// (like 05:10)
-
-	public String parseFromSpeed(double speed) {
+	public static String parseFromSpeed(double speed) {
 		String pattern = "##0.00";
 		DecimalFormat decimalFormat = new DecimalFormat(pattern);
-		String returnSpeed = decimalFormat.format(speed);
-		return returnSpeed;
+		return decimalFormat.format(speed);
 	}
 
-	// method to set leading zero to cover situation while you need e.g. 03:01
-
-	public String LeadingZero(int intNumber) {
+	public static String LeadingZero(int intNumber) {
 		String strLeadingZero;
 		if (intNumber < 10) {
 			strLeadingZero = "0" + Integer.toString(intNumber);
@@ -91,11 +74,7 @@ public class Parser {
 		return strLeadingZero;
 	}
 
-	// method takes time in string and parse it to int
-	// in case if String returns not valid int or not valid for time value
-	// method returns -1
-
-	public int timeStringToInt(String timeString) {
+	public static int timeStringToInt(String timeString) {
 		String delims = ":";
 		int timeInt;
 		String[] time = timeString.split(delims);
@@ -122,11 +101,7 @@ public class Parser {
 		return timeInt;
 	}
 
-	// method takes pace in String and parse it to int
-	// in case if String returns not valid int or not valid for pace value
-	// method returns -1
-
-	public int paceStringToInt(String timeString) {
+	public static int paceStringToInt(String timeString) {
 		String delims = ":";
 		int timeInt;
 		String[] time = timeString.split(delims);
@@ -152,11 +127,7 @@ public class Parser {
 		return timeInt;
 	}
 
-	// method takes pace in String and parse it to int
-	// in case if String returns not valid int or not valid for distance value
-	// method returns -1
-
-	public int distanceStringToInt(String distanceEnteredP) {
+	public static int distanceStringToInt(String distanceEnteredP) {
 		int distanceInt;
 		try {
 			distanceInt = Integer.parseInt(distanceEnteredP);
@@ -168,5 +139,4 @@ public class Parser {
 		}
 		return distanceInt;
 	}
-
 }
