@@ -68,7 +68,6 @@ public class Controller {
 		} catch (InputMismatchException e) { // in case of
 												// InputMismatchException
 			showError(pacecalc, cli);
-
 		}
 		userInput.close();
 	}
@@ -76,7 +75,6 @@ public class Controller {
 	private void showError(PaceCalc pacecalc2, CLUI cli2) {
 		cli.showErrorMsg();
 		CalcFlow(pacecalc, cli);
-
 	}
 
 	public void CalcFlow(PaceCalc pacecalc, GUI gui) { // same method as
@@ -84,7 +82,6 @@ public class Controller {
 														// another parameters
 		this.gui = gui;
 		this.pacecalc = pacecalc;
-
 		this.gui.addCalcListener(new Calculate()); // add listener to Calc
 													// button
 		this.gui.addExitListener(new Exit()); // add listener to Exit button
@@ -93,9 +90,7 @@ public class Controller {
 	// ActionListener for Calculate button, placed it here to support MVC
 	// pattern
 	class Calculate implements ActionListener {
-
 		public void actionPerformed(ActionEvent e) {
-
 			Parser parser = new Parser();
 			try { // catch exceptions
 				switch (gui.getCalcSelection()) { // take a user selection for
@@ -242,10 +237,8 @@ public class Controller {
 																		// string
 				gui.setDistance(distanceStr); // show corresponded value
 												// in UI
-
 			}
 		}
-
 	}
 
 	// it's action listener for Exit button. Placed it in Controller and not in
@@ -261,9 +254,7 @@ public class Controller {
 			if (userExit == 0) { // if user pressed Yes (0)
 				System.exit(0); // exit application
 			}
-
 		}
-
 	}
 
 	private void exitCLIApp(PaceCalc pacecalc, CLUI cli, Scanner userInput) {
@@ -496,5 +487,4 @@ public class Controller {
 			System.exit(0); // close application
 		}
 	}
-
 }

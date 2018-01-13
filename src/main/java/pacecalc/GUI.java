@@ -20,7 +20,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class GUI extends JFrame {
-
 	JButton btnCalc;
 	JButton btnExit;
 	JPanel panelMain;
@@ -44,51 +43,37 @@ public class GUI extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		panelMain = new JPanel();
-
 		panelMain.setLayout(new GridBagLayout());
-
 		btnCalc = new JButton("Calculate");
-
 		btnExit = new JButton("Exit");
-
 		lblPace = new JLabel("Enter pace in format mm:ss");
 		lblTime = new JLabel("Enter time in format hh:mm:ss");
 		lblDistance = new JLabel("Enter distance in meters(integer value)");
 		lblSpeed = new JLabel("Speed calculation:");
-
 		txtTime = new JTextField(20);
 		txtPace = new JTextField(20);
 		txtDistance = new JTextField(20);
 		txtPace.setEnabled(false);
-
 		rbPace = new JRadioButton("Calculate pace based on time and distance");
 		rbPace.setActionCommand("pace");
-
 		rbTime = new JRadioButton("Calculate time based on pace and distance");
 		rbTime.setActionCommand("time");
-
 		rbDistance = new JRadioButton("Calculate distance based on pace and time");
 		rbDistance.setActionCommand("distance");
-
 		rbSpeed = new JRadioButton("Calculate speed based on pace");
 		rbSpeed.setActionCommand("speed");
-
 		ListenerForRadioButton lForRadioButton = new ListenerForRadioButton();
-
 		rbPace.addActionListener(lForRadioButton);
 		rbTime.addActionListener(lForRadioButton);
 		rbDistance.addActionListener(lForRadioButton);
 		rbSpeed.addActionListener(lForRadioButton);
-
 		bgSelect = new ButtonGroup();
 		bgSelect.add(rbPace);
 		bgSelect.add(rbTime);
 		bgSelect.add(rbDistance);
 		bgSelect.add(rbSpeed);
 		rbPace.setSelected(true);
-
 		Box enterBox = Box.createVerticalBox();
 		enterBox.add(lblTime);
 		enterBox.add(txtTime);
@@ -110,25 +95,21 @@ public class GUI extends JFrame {
 		componentAdd(panelMain, enterBox, 0, 0, 1, 1, GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 		componentAdd(panelMain, choiceBox, 1, 0, 1, 1, GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
 		componentAdd(panelMain, buttonBox, 1, 1, 1, 1, GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL);
-
 		this.add(panelMain);
 		this.pack();
 		try {
 			ImageIcon icon = new ImageIcon(
 					getClass().getClassLoader().getResource("winner-runner-arriving-to-end-line.png"));
-
 			this.setIconImage(icon.getImage());
 		} catch (Exception e) {
 			System.out.println("file not found");
 		}
 		this.setTitle("Pace Calculator");
 		this.setVisible(true);
-
 	}
 
 	void addCalcListener(ActionListener lForButton) {
 		btnCalc.addActionListener(lForButton);
-
 	}
 
 	void addExitListener(ActionListener ExitButton) {
@@ -139,7 +120,6 @@ public class GUI extends JFrame {
 		Object[] options = { "Yes", "No" };
 		int userChoice = JOptionPane.showOptionDialog(this, "Are you sure you would like to exit PaceCalculator?",
 				"Confirm please", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
 		return userChoice;
 	}
 
@@ -158,7 +138,6 @@ public class GUI extends JFrame {
 	}
 
 	String getPace() {
-
 		return txtPace.getText();
 	}
 
@@ -196,9 +175,7 @@ public class GUI extends JFrame {
 	}
 
 	class ListenerForRadioButton implements ActionListener {
-
 		public void actionPerformed(ActionEvent e) {
-
 			if (e.getSource() == rbPace) {
 				setSpeed("");
 				txtPace.setEnabled(false);
@@ -226,28 +203,16 @@ public class GUI extends JFrame {
 			int place, int stretch) {
 		GridBagConstraints gridConstraints = new GridBagConstraints();
 		gridConstraints.gridx = xPos;
-
 		gridConstraints.gridy = yPos;
-
 		gridConstraints.ipadx = 5;
 		gridConstraints.ipady = 5;
-
 		gridConstraints.gridwidth = compWidth;
-
 		gridConstraints.gridheight = compHeight;
-
 		gridConstraints.weightx = 100;
-
 		gridConstraints.weighty = 100;
-
 		gridConstraints.insets = new Insets(5, 5, 5, 5);
-
 		gridConstraints.anchor = place;
-
 		gridConstraints.fill = stretch;
-
 		thePanel.add(comp, gridConstraints);
-
 	}
-
 }
