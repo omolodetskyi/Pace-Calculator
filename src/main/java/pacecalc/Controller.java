@@ -68,8 +68,7 @@ public class Controller {
 				exitCLIApp(pacecalc, cli, userInput);
 				break;
 			default: // if answer userinput is different than 1,2,3,0
-				cli.showErrorMsg(); // show error message
-				CalcFlow(pacecalc, cli); // start application again
+				showError(pacecalc, cli);
 				break;
 			}
 		} // TODO what if both exception occurs? Could it be that application is
