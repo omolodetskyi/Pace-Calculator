@@ -59,7 +59,7 @@ public class Controller {
 				break;
 			default: // if answer userinput is different than 1,2,3,0
 				cli.showErrorMsg(); // show error message
-				CalcFlow(pacecalc, cli);
+				CalcFlow(pacecalc, cli); // start application again
 				break;
 			}
 		} catch (NumberFormatException e) {
