@@ -5,7 +5,7 @@ public class Convertor {
 	public String convertKmToMile(int distanceKm) {
 		String distanceMile;
 		double distanceMileDouble;
-		distanceMileDouble = Math.floor(((double) (distanceKm) / Constants.ONEKM_INMETERS) * 621.4) / 1000.0;
+		distanceMileDouble = Math.floor(((double) (distanceKm) / Constants.ONE_KM_IN_METERS) * 621.4) / 1000.0;
 		distanceMile = Double.toString(distanceMileDouble);
 		return distanceMile;
 	}
@@ -14,7 +14,7 @@ public class Convertor {
 
 	public int convertMileToKm(String distanceMile) {
 		int distanceKm;
-		distanceKm = (int) Math.ceil(Double.parseDouble(distanceMile) * Constants.ONEMILE_INKM);
+		distanceKm = (int) Math.ceil(Double.parseDouble(distanceMile) * Constants.ONE_MILE_IN_KM);
 		return distanceKm;
 	}
 
@@ -22,7 +22,17 @@ public class Convertor {
 
 	public String convertSpeedKmhToMpH(double speedKm) {
 		String speedMpH;
-		speedMpH = Double.toString(Math.ceil(speedKm * 621.4) / 1000.0);
+		speedMpH = Double.toString(Math.ceil(speedKm * Constants.ONE_KM_IN_MILE * 1000) / 1000.0); // *1000
+																									// and
+																									// /1000.0
+																									// is
+																									// used
+																									// to
+																									// make
+																									// precise
+																									// for
+																									// Math.ceil
+																									// function
 
 		return speedMpH;
 	}
@@ -32,7 +42,17 @@ public class Convertor {
 	public double convertSpeedMpHtoKmh(String speedMpH) {
 
 		double speedKm;
-		speedKm = Math.ceil(Double.parseDouble(speedMpH) * 160.9) / 100.0;
+		speedKm = Math.ceil(Double.parseDouble(speedMpH) * Constants.ONE_MILE_IN_KM / 10) / 100.0; // *10
+																									// /
+																									// 100.0
+																									// is
+																									// used
+																									// to
+																									// make
+																									// precise
+																									// for
+																									// Math.ceil
+																									// function
 		return speedKm;
 	}
 }

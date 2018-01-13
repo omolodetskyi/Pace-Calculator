@@ -55,7 +55,7 @@ public class PaceCalc {
 		int distance = this.getDistance();
 		int time = this.getTime();
 		int resultPace;
-		resultPace = (int) (Constants.ONEKM_INMETERS * time / distance);
+		resultPace = (int) (Constants.ONE_KM_IN_METERS * time / distance);
 		return resultPace;
 	}
 
@@ -65,7 +65,7 @@ public class PaceCalc {
 		int pace = this.getPace();
 		int time = this.getTime();
 		int resultDistance;
-		resultDistance = (int) (Constants.ONEKM_INMETERS * time / pace);
+		resultDistance = (int) (Constants.ONE_KM_IN_METERS * time / pace);
 		return resultDistance;
 	}
 
@@ -74,7 +74,7 @@ public class PaceCalc {
 	protected double calcSpeed() {
 		double resultSpeed;
 		pace = this.getPace();
-		resultSpeed = (double) (Constants.ONEHOUR_INSEC) / (double) (pace);
+		resultSpeed = (double) (Constants.ONE_HOUR_IN_SEC) / (double) (pace);
 		return resultSpeed;
 	}
 
@@ -84,7 +84,7 @@ public class PaceCalc {
 		int resultTime;
 		int pace = this.getPace();
 		int distance = this.getDistance();
-		resultTime = (int) (pace * distance / Constants.ONEKM_INMETERS);
+		resultTime = (int) (pace * distance / Constants.ONE_KM_IN_METERS);
 		return resultTime;
 	}
 

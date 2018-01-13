@@ -16,9 +16,9 @@ public class Parser {
 		String timeSec;
 
 		String returnTime;
-		timeHours = LeadingZero(time / Constants.ONEHOUR_INSEC);
-		timeMin = LeadingZero((time % Constants.ONEHOUR_INSEC) / Constants.ONEHOUR_INMIN);
-		timeSec = LeadingZero((time % Constants.ONEHOUR_INSEC) % Constants.ONEMIN_INSEC);
+		timeHours = LeadingZero(time / Constants.ONE_HOUR_IN_SEC);
+		timeMin = LeadingZero((time % Constants.ONE_HOUR_IN_SEC) / Constants.ONE_HOUR_IN_MIN);
+		timeSec = LeadingZero((time % Constants.ONE_HOUR_IN_SEC) % Constants.ONE_MIN_IN_SEC);
 		returnTime = timeHours + ":" + timeMin + ":" + timeSec;
 
 		return returnTime;
@@ -33,8 +33,8 @@ public class Parser {
 		int returnDistanceM;
 		String leadingZero;
 		String returnDistance;
-		returnDistanceKm = distance / Constants.ONEKM_INMETERS;
-		returnDistanceM = distance % Constants.ONEKM_INMETERS;
+		returnDistanceKm = distance / Constants.ONE_KM_IN_METERS;
+		returnDistanceM = distance % Constants.ONE_KM_IN_METERS;
 		if (returnDistanceM > 99) {
 			leadingZero = "";
 		} else if (returnDistanceM > 9) {
@@ -56,9 +56,9 @@ public class Parser {
 		String returnPaceMin;
 		String returnPaceSec;
 		String returnPace;
-		returnPaceHrs = LeadingZero(pace / Constants.ONEHOUR_INSEC);
-		returnPaceMin = LeadingZero((pace % Constants.ONEHOUR_INSEC) / Constants.ONEHOUR_INMIN);
-		returnPaceSec = LeadingZero((pace % Constants.ONEHOUR_INSEC) % Constants.ONEMIN_INSEC);
+		returnPaceHrs = LeadingZero(pace / Constants.ONE_HOUR_IN_SEC);
+		returnPaceMin = LeadingZero((pace % Constants.ONE_HOUR_IN_SEC) / Constants.ONE_HOUR_IN_MIN);
+		returnPaceSec = LeadingZero((pace % Constants.ONE_HOUR_IN_SEC) % Constants.ONE_MIN_IN_SEC);
 		if (returnPaceHrs.compareTo("00") != 0) {
 			returnPace = returnPaceHrs + ":" + returnPaceMin + ":" + returnPaceSec;
 		} else {
@@ -100,23 +100,24 @@ public class Parser {
 		int timeInt;
 		String[] time = timeString.split(delims);
 		if (time.length != 3) {
-			timeInt = -1;
+			timeInt = Constants.ERROR_CODE;
 		} else {
 			try {
 
 				int hours = Integer.parseInt(time[0]);
 				int min = Integer.parseInt(time[1]);
 				int sec = Integer.parseInt(time[2]);
-				if (hours > 60 || min > 60 || sec > 60 || min < 0 || sec < 0 || hours < 0) {
-					timeInt = -1;
+				if (hours > Constants.ONE_HOUR_IN_MIN || min > Constants.ONE_MIN_IN_SEC
+						|| sec > Constants.ONE_MIN_IN_SEC || min < 0 || sec < 0 || hours < 0) {
+					timeInt = Constants.ERROR_CODE;
 				} else {
-					timeInt = hours * Constants.ONEHOUR_INSEC + min * Constants.ONEMIN_INSEC + sec;
+					timeInt = hours * Constants.ONE_HOUR_IN_SEC + min * Constants.ONE_MIN_IN_SEC + sec;
 					if (timeInt == 0) {
-						timeInt = -1;
+						timeInt = Constants.ERROR_CODE;
 					}
 				}
 			} catch (NumberFormatException e) {
-				timeInt = -1;
+				timeInt = Constants.ERROR_CODE;
 			}
 		}
 		return timeInt;
@@ -124,14 +125,14 @@ public class Parser {
 
 	// method takes pace in String and parse it to int
 	// in case if String returns not valid int or not valid for pace value
-	// method returns -1
+	// method returns Constants.ERROR_CODE
 
 	public int paceStringToInt(String timeString) {
 		String delims = ":";
 		int timeInt;
 		String[] time = timeString.split(delims);
 		if (time.length != 2) {
-			timeInt = -1;
+			timeInt = Constants.ERROR_CODE;
 		} else {
 			try {
 				int min = Integer.parseInt(time[0]);
@@ -139,13 +140,13 @@ public class Parser {
 				if (min > 60 || sec > 60 || min < 0 || sec < 0) {
 					timeInt = -1;
 				} else {
-					timeInt = min * Constants.ONEMIN_INSEC + sec;
+					timeInt = min * Constants.ONE_MIN_IN_SEC + sec;
 					if (timeInt == 0) {
-						timeInt = -1;
+						timeInt = Constants.ERROR_CODE;
 					}
 				}
 			} catch (NumberFormatException e) {
-				timeInt = -1;
+				timeInt = Constants.ERROR_CODE;
 			}
 		}
 
@@ -154,17 +155,17 @@ public class Parser {
 
 	// method takes pace in String and parse it to int
 	// in case if String returns not valid int or not valid for distance value
-	// method returns -1
+	// method returns Constants.ERROR_CODE
 
 	public int distanceStringToInt(String distanceEnteredP) {
 		int distanceInt;
 		try {
 			distanceInt = Integer.parseInt(distanceEnteredP);
 			if (distanceInt < 0 || distanceInt == 0) {
-				distanceInt = -1;
+				distanceInt = Constants.ERROR_CODE;
 			}
 		} catch (NumberFormatException e) {
-			distanceInt = -1;
+			distanceInt = Constants.ERROR_CODE;
 		}
 		return distanceInt;
 	}

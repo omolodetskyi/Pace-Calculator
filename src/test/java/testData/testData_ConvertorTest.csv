@@ -1,0 +1,4 @@
+TestName,distanceKm,distanceMileExpected,message
+convertKMtoMileTest,10000,6.214,Test converting usual distance km to mile
+convertKMtoMileTest,10,0.006,Test converting small distance km to mile
+convertKMtoMileTest,10000000,6214,Test converting big distance km to mile
