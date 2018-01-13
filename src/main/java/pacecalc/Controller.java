@@ -11,49 +11,39 @@ public class Controller {
 	}
 
 	public void CalcFlow(PaceCalc pacecalc, CLUI cli) {
-
 		int userSelection;
 		Scanner userInput = new Scanner(System.in);
-
 		Parser parser = new Parser();
-
 		// show Welcome and selection message
-
 		cli.showWelcomeMsg();
 		cli.showSelectionMsg();
-
 		// take user input (could be 1 - pace calc, 2 - time calc, 3 - distance,
 		// 4- speed
 		// calc, 0 - exit
 		try { // exception handling for non-integer values or too big values
 			userSelection = userInput.nextInt();
 			switch (userSelection) {
-
 			case 1: // if user selected pace calc
 				calculateCLIpace(pacecalc, cli, userInput, parser);
 				// ask user to continue
 				askContinue(pacecalc, cli, userInput);
 				break;
-
 			case 2: // if user selected time calculation
 				calculateCLItime(pacecalc, cli, userInput, parser);
 				// ask user to continue
 				askContinue(pacecalc, cli, userInput);
 				break;
-
 			case 3: // if user selected distance calculation
 				calculateCLIDistance(pacecalc, cli, userInput, parser);
 				// ask user to continue
 				askContinue(pacecalc, cli, userInput);
 				break;
-
 			case 4:
 				// if user selected speed calculation
 				calculateCLISpeed(pacecalc, cli, userInput, parser);
 				// ask user to continue
 				askContinue(pacecalc, cli, userInput);
 				break;
-
 			case 0:
 				exitCLIApp(pacecalc, cli, userInput);
 				break;
@@ -67,7 +57,6 @@ public class Controller {
 			showError(pacecalc, cli);
 		}
 		userInput.close();
-
 	}
 
 	private void exitCLIApp(PaceCalc pacecalc, CLUI cli, Scanner userInput) {
@@ -86,9 +75,7 @@ public class Controller {
 			cli.showContinueMsg(); // show continue message again
 			answer = userInput.next(); // take user input
 		}
-
 		// if answer is yes or no we go here to if-else
-
 		if (answer.equals("no")) { // if answer is yes
 			CalcFlow(pacecalc, cli); // start application again
 		} else if (answer.equals("yes")) { // if answer is no
@@ -107,7 +94,6 @@ public class Controller {
 		cli.showEnterPaceMsg(); // request to enter pace
 		paceStr = userInput.next(); // take pace from user input
 		paceInt = parser.paceStringToInt(paceStr); // parse pace to int
-
 		// in case of wrong user input parser returns -1
 		while (paceInt <= 0) { // in cycle until parser returns negative
 								// value or 0
@@ -138,7 +124,6 @@ public class Controller {
 		cli.showEnterPaceMsg(); // request to enter pace
 		paceStr = userInput.next(); // take pace from user input
 		paceInt = parser.paceStringToInt(paceStr); // parse pace to int
-
 		// in case of wrong user input parser returns -1
 		while (paceInt <= 0) { // in cycle until parser returns negative
 								// value or 0
@@ -163,7 +148,6 @@ public class Controller {
 		// if user input was valid continue
 		pacecalc.setTime(timeInt); // set time to pacecalc object
 		distanceInt = pacecalc.calcDistance(); // calculate distance
-
 		distanceStr = parser.parseFromDistance(distanceInt); // parse
 																// distance
 																// to
@@ -297,9 +281,7 @@ public class Controller {
 			cli.showContinueMsg(); // show continue message again
 			answer = userInput.next(); // take user input
 		}
-
 		// if answer is yes or no we go here to if-else
-
 		if (answer.equals("yes")) { // if answer is yes
 			CalcFlow(pacecalc, cli); // start application again
 		} else if (answer.equals("no")) { // if answer is no

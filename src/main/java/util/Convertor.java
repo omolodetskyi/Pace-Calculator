@@ -40,7 +40,6 @@ public class Convertor {
 	// method converts speed in m/h to km/h
 
 	public double convertSpeedMpHtoKmh(String speedMpH) {
-
 		double speedKm;
 		speedKm = Math.ceil(Double.parseDouble(speedMpH) * Constants.ONE_MILE_IN_KM / 10) / 100.0; // *10
 																									// /

@@ -5,7 +5,6 @@ import java.text.DecimalFormat;
 public class Parser {
 
 	// parseFrom methods convert fields' values in usual format in Strings
-
 	// convert time in int (like 3600) to time in String in format hh:mm:ss
 	// (like 01:00:00)
 
@@ -14,13 +13,11 @@ public class Parser {
 		String timeHours;
 		String timeMin;
 		String timeSec;
-
 		String returnTime;
 		timeHours = LeadingZero(time / Constants.ONE_HOUR_IN_SEC);
 		timeMin = LeadingZero((time % Constants.ONE_HOUR_IN_SEC) / Constants.ONE_HOUR_IN_MIN);
 		timeSec = LeadingZero((time % Constants.ONE_HOUR_IN_SEC) % Constants.ONE_MIN_IN_SEC);
 		returnTime = timeHours + ":" + timeMin + ":" + timeSec;
-
 		return returnTime;
 	}
 
@@ -62,10 +59,8 @@ public class Parser {
 		if (returnPaceHrs.compareTo("00") != 0) {
 			returnPace = returnPaceHrs + ":" + returnPaceMin + ":" + returnPaceSec;
 		} else {
-
 			returnPace = returnPaceMin + ":" + returnPaceSec;
 		}
-
 		return returnPace;
 	}
 
@@ -103,7 +98,6 @@ public class Parser {
 			timeInt = Constants.ERROR_CODE;
 		} else {
 			try {
-
 				int hours = Integer.parseInt(time[0]);
 				int min = Integer.parseInt(time[1]);
 				int sec = Integer.parseInt(time[2]);
@@ -149,7 +143,6 @@ public class Parser {
 				timeInt = Constants.ERROR_CODE;
 			}
 		}
-
 		return timeInt;
 	}
 
@@ -169,5 +162,4 @@ public class Parser {
 		}
 		return distanceInt;
 	}
-
 }
