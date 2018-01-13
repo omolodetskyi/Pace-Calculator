@@ -17,6 +17,5 @@ public class Events {
 		} catch (NullPointerException e) {
 			return 0;
 		}
-
 	}
 }

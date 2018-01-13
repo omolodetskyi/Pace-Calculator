@@ -3,12 +3,10 @@ package pacecalc;
 import util.Constants;
 
 public class PaceCalc {
-
 	private int time; // time in seconds
 	private double speed; // speed in km/h
 	private int pace; // pace in seconds per km
 	private int distance; // distance in meters
-
 	// getters return PaceCalc fields
 
 	public int getTime() {
@@ -96,5 +94,4 @@ public class PaceCalc {
 		this.setTime(time);
 		this.setSpeed(speed);
 	}
-
 }
