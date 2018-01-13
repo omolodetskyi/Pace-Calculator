@@ -74,15 +74,19 @@ public class Controller {
 		} // TODO what if both exception occurs? Could it be that application is
 			// started twice?
 		catch (NumberFormatException e) { // in case of numberformat exception
-			cli.showErrorMsg(); // show error message
-			CalcFlow(pacecalc, cli); // restart application
+			showError(pacecalc, cli);
 		} catch (InputMismatchException e) { // in case of
 												// InputMismatchException
-			cli.showErrorMsg(); // show error message
-			CalcFlow(pacecalc, cli); // restart application
+			showError(pacecalc, cli);
 
 		}
 		userInput.close();
+
+	}
+
+	private void showError(PaceCalc pacecalc2, CLUI cli2) {
+		cli.showErrorMsg();
+		CalcFlow(pacecalc, cli);
 
 	}
 
