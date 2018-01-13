@@ -355,123 +355,155 @@ public class Controller {
 	class Calculate implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			int timeInt;
-			int distanceInt;
-			int paceInt;
-			double speedDouble;
-			String timeStr;
-			String distanceStr;
-			String paceStr;
-			String speedStr;
+
 			Parser parser = new Parser();
 			try { // catch exceptions
 				switch (gui.getCalcSelection()) { // take a user selection for
 													// calculation
 				case 1: // pace calculation
-					timeStr = gui.getTime(); // take time from corresponded
-												// field
-					distanceStr = gui.getDistance(); // take distance from
-														// corresponded field
-					timeInt = parser.timeStringToInt(timeStr); // parse time
-					distanceInt = parser.distanceStringToInt(distanceStr); // parse
-																			// distance
-					if (timeInt < 0 || distanceInt < 0) { // if there is wrong
-															// value after
-															// parsing
-						gui.showErrorMessage(); // show error message
-						// TODO maybe make wrong values in fields red?
-					} else {// if values are OK
-						pacecalc.setDistance(distanceInt); // set distance in
-															// pacecalc object
-						pacecalc.setTime(timeInt); // set time in pacecalc
-													// object
-						paceInt = pacecalc.calcPace(); // calculate pace
-						paceStr = parser.parseFromPace(paceInt); // parse
-																	// calculated
-																	// pace to
-																	// Str
-						gui.setPace(paceStr); // show corresponded value in UI
-					}
+					paceGUICalculation(parser);
 					break;
 				case 2: // time calculation
-					paceStr = gui.getPace(); // take pace from corresponded
-												// field
-					distanceStr = gui.getDistance(); // take distance from
-														// corresponded field
-					paceInt = parser.paceStringToInt(paceStr); // parse pace
-					distanceInt = parser.distanceStringToInt(distanceStr); // parse
-																			// distance
-					if (paceInt < 0 || distanceInt < 0) { // if there is wrong
-															// value after
-															// parsing
-						gui.showErrorMessage();// show error message
-						// TODO maybe make wrong values in fields red?
-					} else {// if values are OK
-						pacecalc.setDistance(distanceInt); // set distance in
-															// pacecalc object
-						pacecalc.setPace(paceInt); // set pace i pacecalc object
-						timeInt = pacecalc.calcTime(); // calculate time
-						timeStr = parser.parseFromTime(timeInt); // parse time
-																	// from int
-																	// to string
-						gui.setTime(timeStr); // show corresponded value in UI
-					}
+					timeGUICalculation(parser);
 					break;
 				case 3: // distance calculation
-					paceStr = gui.getPace(); // take pace from corresponded
-												// field
-					timeStr = gui.getTime(); // take time from corresponded
-												// field
-					paceInt = parser.paceStringToInt(paceStr); // parse pace
-																// from string
-																// to int
-					timeInt = parser.timeStringToInt(timeStr); // parse time
-																// from string
-																// to int
-					if (paceInt < 0 || timeInt < 0) {// if there is wrong value
-														// after parsing
-						gui.showErrorMessage(); // show error message
-						// TODO maybe make wrong values in fields red?
-					} else { // if ok
-						pacecalc.setTime(timeInt); // set time to pacecalc
-													// object
-						pacecalc.setPace(paceInt); // set pace to pacecalc
-													// object
-						distanceInt = pacecalc.calcDistance(); // calculate
-																// distance
-						distanceStr = parser.parseFromDistance(distanceInt); // parse
-																				// distance
-																				// from
-																				// int
-																				// to
-																				// string
-						gui.setDistance(distanceStr); // show corresponded value
-														// in UI
-
-					}
+					distanceGUICalculation(parser);
 					break;
 				case 4: // speed calculation
-					paceStr = gui.getPace(); // take pace from corresponded
-					// field
-					paceInt = parser.paceStringToInt(paceStr); // parse pace
-					// from string
-					// to int
-					if (paceInt < 0) {// if there is wrong value
-						// after parsing
-						gui.showErrorMessage(); // show error message
-						// TODO maybe make wrong values in fields red?
-					} else { // if ok
-						pacecalc.setPace(paceInt); // set pace to pacecalc
-						// object
-						speedDouble = pacecalc.calcSpeed();
-						speedStr = parser.parseFromSpeed(speedDouble);
-						gui.setSpeed(speedStr);
-					}
+					speedGUICalculation(parser);
+					break;
 				}
 			} catch (Exception error) { // in case of exception
 				gui.showErrorMessage(); // show error
 			}
 
+		}
+
+		private void speedGUICalculation(Parser parser) {
+			int paceInt;
+			double speedDouble;
+			String paceStr;
+			String speedStr;
+			paceStr = gui.getPace(); // take pace from corresponded
+			// field
+			paceInt = parser.paceStringToInt(paceStr); // parse pace
+			// from string
+			// to int
+			if (paceInt < 0) {// if there is wrong value
+				// after parsing
+				gui.showErrorMessage(); // show error message
+				// TODO maybe make wrong values in fields red?
+			} else { // if ok
+				pacecalc.setPace(paceInt); // set pace to pacecalc
+				// object
+				speedDouble = pacecalc.calcSpeed();
+				speedStr = parser.parseFromSpeed(speedDouble);
+				gui.setSpeed(speedStr);
+			}
+		}
+
+		private void paceGUICalculation(Parser parser) {
+			int timeInt;
+			int distanceInt;
+			int paceInt;
+			String timeStr;
+			String distanceStr;
+			String paceStr;
+			timeStr = gui.getTime(); // take time from corresponded
+										// field
+			distanceStr = gui.getDistance(); // take distance from
+												// corresponded field
+			timeInt = parser.timeStringToInt(timeStr); // parse time
+			distanceInt = parser.distanceStringToInt(distanceStr); // parse
+																	// distance
+			if (timeInt < 0 || distanceInt < 0) { // if there is wrong
+													// value after
+													// parsing
+				gui.showErrorMessage(); // show error message
+				// TODO maybe make wrong values in fields red?
+			} else {// if values are OK
+				pacecalc.setDistance(distanceInt); // set distance in
+													// pacecalc object
+				pacecalc.setTime(timeInt); // set time in pacecalc
+											// object
+				paceInt = pacecalc.calcPace(); // calculate pace
+				paceStr = parser.parseFromPace(paceInt); // parse
+															// calculated
+															// pace to
+															// Str
+				gui.setPace(paceStr); // show corresponded value in UI
+			}
+		}
+
+		private void timeGUICalculation(Parser parser) {
+			int timeInt;
+			int distanceInt;
+			int paceInt;
+			String timeStr;
+			String distanceStr;
+			String paceStr;
+			paceStr = gui.getPace(); // take pace from corresponded
+										// field
+			distanceStr = gui.getDistance(); // take distance from
+												// corresponded field
+			paceInt = parser.paceStringToInt(paceStr); // parse pace
+			distanceInt = parser.distanceStringToInt(distanceStr); // parse
+																	// distance
+			if (paceInt < 0 || distanceInt < 0) { // if there is wrong
+													// value after
+													// parsing
+				gui.showErrorMessage();// show error message
+				// TODO maybe make wrong values in fields red?
+			} else {// if values are OK
+				pacecalc.setDistance(distanceInt); // set distance in
+													// pacecalc object
+				pacecalc.setPace(paceInt); // set pace i pacecalc object
+				timeInt = pacecalc.calcTime(); // calculate time
+				timeStr = parser.parseFromTime(timeInt); // parse time
+															// from int
+															// to string
+				gui.setTime(timeStr); // show corresponded value in UI
+			}
+		}
+
+		private void distanceGUICalculation(Parser parser) {
+			int timeInt;
+			int distanceInt;
+			int paceInt;
+			String timeStr;
+			String distanceStr;
+			String paceStr;
+			paceStr = gui.getPace(); // take pace from corresponded
+										// field
+			timeStr = gui.getTime(); // take time from corresponded
+										// field
+			paceInt = parser.paceStringToInt(paceStr); // parse pace
+														// from string
+														// to int
+			timeInt = parser.timeStringToInt(timeStr); // parse time
+														// from string
+														// to int
+			if (paceInt < 0 || timeInt < 0) {// if there is wrong value
+												// after parsing
+				gui.showErrorMessage(); // show error message
+				// TODO maybe make wrong values in fields red?
+			} else { // if ok
+				pacecalc.setTime(timeInt); // set time to pacecalc
+											// object
+				pacecalc.setPace(paceInt); // set pace to pacecalc
+											// object
+				distanceInt = pacecalc.calcDistance(); // calculate
+														// distance
+				distanceStr = parser.parseFromDistance(distanceInt); // parse
+																		// distance
+																		// from
+																		// int
+																		// to
+																		// string
+				gui.setDistance(distanceStr); // show corresponded value
+												// in UI
+
+			}
 		}
 
 	}
